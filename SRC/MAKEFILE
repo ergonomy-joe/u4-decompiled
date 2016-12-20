@@ -1,0 +1,181 @@
+CFLAGS=/Ox /Zp /Gc
+ASM=\tools\masm300 /Mx
+OBJS=errmsg.obj \
+low.obj \
+u4_use.obj \
+u4_file.obj \
+u4_util.obj \
+util2.obj \
+u4_main.obj \
+u4_sound.obj \
+u4_main2.obj \
+u4_dos.obj \
+u4_graph.obj \
+u4_map.obj \
+u4_end.obj \
+u4_anim.obj \
+u4_explo.obj \
+u4_z.obj \
+u4_cstes.obj \
+u4_npc.obj \
+u4_comba.obj \
+u4_spell.obj \
+u4_q_n_v.obj \
+u4_get.obj \
+u4_locate.obj \
+u4_combb.obj \
+u4_combc.obj \
+u4_dng.obj \
+u4_hole.obj \
+u4_mix.obj \
+u4_srch.obj \
+u4_evt.obj \
+u4_ai.obj \
+u4_talk.obj \
+u4_3d.obj \
+u4_srch2.obj \
+u4_peer.obj \
+u4_init.obj \
+u4_shops.obj \
+u4_lb.obj \
+u4_shrin.obj \
+u4_var.obj
+
+
+all: install
+
+install: u4_main.exe
+	copy u4_main.exe ..\original
+
+u4_main.exe: $(OBJS)
+	#----create the exe file
+	link /MAP @u4.rsp
+	#----pack it and then unpack it
+	\tools\exepack u4_main.exe tmp.exe
+	\tools\unp tmp.exe
+	copy tmp.exe u4_main.exe
+	del tmp.exe
+
+
+#u4_var.obj: u4_var.c
+#	msc $(CFLAGS) /J u4_var;
+
+u4_var.obj: u4_var.asm
+	$(ASM) u4_var;
+
+errmsg.obj: errmsg.c
+	msc $(CFLAGS)    errmsg;
+
+low.obj: low.asm
+	$(ASM) low;
+
+u4_use.obj: u4_use.c
+	msc $(CFLAGS) /J u4_use;
+
+u4_file.obj: u4_file.c
+	msc $(CFLAGS) /J u4_file;
+
+u4_util.obj: u4_util.c
+	msc $(CFLAGS)    u4_util;
+
+util2.obj: util2.asm
+	$(ASM) util2;
+
+u4_main.obj: u4_main.c
+	msc $(CFLAGS) /J u4_main;
+
+u4_sound.obj: u4_sound.asm
+	$(ASM) u4_sound;
+
+u4_main2.obj: u4_main2.c
+	msc $(CFLAGS) /J u4_main2;
+
+u4_dos.obj: u4_dos.asm
+	$(ASM) u4_dos;
+
+u4_graph.obj: u4_graph.asm
+	$(ASM) u4_graph;
+
+u4_map.obj: u4_map.c
+	msc $(CFLAGS) /J u4_map;
+
+u4_end.obj: u4_end.c
+	msc $(CFLAGS) /J u4_end;
+
+u4_anim.obj: u4_anim.c
+	msc $(CFLAGS) /J u4_anim;
+
+u4_explo.obj: u4_explo.c
+	msc $(CFLAGS)    u4_explo;
+
+u4_z.obj: u4_z.c
+	msc $(CFLAGS)    u4_z;
+
+u4_cstes.obj: u4_cstes.c
+	msc $(CFLAGS)    u4_cstes;
+
+u4_npc.obj: u4_npc.c
+	msc $(CFLAGS)    u4_npc;
+
+u4_comba.obj: u4_comba.c
+	msc $(CFLAGS) /J u4_comba;
+
+u4_spell.obj: u4_spell.c
+	msc $(CFLAGS) /J u4_spell;
+
+u4_q_n_v.obj: u4_q_n_v.c
+	msc $(CFLAGS) /J u4_q_n_v;
+
+u4_get.obj: u4_get.c
+	msc $(CFLAGS)    u4_get;
+
+u4_locate.obj: u4_locate.c
+	msc $(CFLAGS)    u4_locate;
+
+u4_combb.obj: u4_combb.c
+	msc $(CFLAGS) /J u4_combb;
+
+u4_combc.obj: u4_combc.c
+	msc $(CFLAGS)    u4_combc;
+
+u4_dng.obj: u4_dng.c
+	msc $(CFLAGS)    u4_dng;
+
+u4_hole.obj: u4_hole.c
+	msc $(CFLAGS)    u4_hole;
+
+u4_mix.obj: u4_mix.c
+	msc $(CFLAGS)    u4_mix;
+
+u4_srch.obj: u4_srch.c
+	msc $(CFLAGS)    u4_srch;
+
+u4_evt.obj: u4_evt.c
+	msc $(CFLAGS)    u4_evt;
+
+u4_ai.obj: u4_ai.c
+	msc $(CFLAGS)    u4_ai;
+
+u4_talk.obj: u4_talk.c
+	msc $(CFLAGS)    u4_talk;
+
+u4_3d.obj: u4_3d.c
+	msc $(CFLAGS)    u4_3d;
+
+u4_srch2.obj: u4_srch2.c
+	msc $(CFLAGS)    u4_srch2;
+
+u4_peer.obj: u4_peer.c
+	msc $(CFLAGS)    u4_peer;
+
+u4_init.obj: u4_init.c
+	msc $(CFLAGS)    u4_init;
+
+u4_shops.obj: u4_shops.c
+	msc $(CFLAGS)    u4_shops;
+
+u4_lb.obj: u4_lb.c
+	msc $(CFLAGS)    u4_lb;
+
+u4_shrin.obj: u4_shrin.c
+	msc $(CFLAGS)    u4_shrin;
