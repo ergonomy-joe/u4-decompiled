@@ -31,6 +31,8 @@ ergonomy_joe
 	1. Rename downloaded file to MSC2.img
 	1. In the dropdown select "MS C 4.00 (Disk 3)"
 	1. Rename downloaded file to MSC3.img
+	1. In the dropdown select "MS Macro Assembler 3.00"
+	1. Rename downloaded file to MASM300.img
 	1. Go to https://winworldpc.com/product/borland-turbo-c/2x
 	1. Download "Borland Turbo C 2.0 (3.5)"
 	1. Extract disk2.img from download and place with other img files
@@ -56,7 +58,7 @@ ergonomy_joe
 	1. >copy A:\*.* C:\tools\MSC400\LIB
 	1. >copy A:\LINK.EXE C:\tools\MSC400
 	1. >imgmoung -u a
-	1. >imgmount a D:\disk2.IMG -t floppy
+	1. >imgmount a D:\MASM300.IMG -t floppy
 	1. >copy A:\LINK.EXE C:\tools\MASM300
 	1. >copy A:\LINK.EXE C:\tools
 	1. >copy A:\MASM.EXE C:\tools\MASM300
@@ -65,5 +67,5 @@ ergonomy_joe
 	1. >copy A:\MAKE.EXE C:\TOOLS\TURBOC20
 1. Build
 	1. >DOIT
-		1. If the linker gives you any prompts just go with the default (hit enter)
+		1. If the linker gives you any prompts (Or it looks like it is hung) just go with the default (hit enter a few times)
 	

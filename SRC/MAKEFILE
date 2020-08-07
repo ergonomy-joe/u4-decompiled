@@ -1,4 +1,4 @@
-CFLAGS=/Gs /Osa /Zp /Gc
+CFLAGS=/Ox /Zp /Gc
 ASM=\tools\masm300\masm /Mx
 OBJS=er.obj \
 l.obj \
