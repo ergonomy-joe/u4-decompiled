@@ -67,5 +67,4 @@ ergonomy_joe
 	1. >copy A:\MAKE.EXE C:\TOOLS\TURBOC20
 1. Build
 	1. >DOIT
-		1. If the linker gives you any prompts (Or it looks like it is hung) just go with the default (hit enter a few times)
 	
