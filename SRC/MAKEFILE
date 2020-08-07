@@ -1,45 +1,45 @@
-CFLAGS=/Ox /Zp /Gc
-ASM=\tools\masm300 /Mx
-OBJS=errmsg.obj \
-low.obj \
-u4_use.obj \
-u4_file.obj \
-u4_util.obj \
-util2.obj \
-u4_main.obj \
-u4_sound.obj \
-u4_main2.obj \
-u4_dos.obj \
-u4_graph.obj \
-u4_map.obj \
-u4_end.obj \
-u4_anim.obj \
-u4_explo.obj \
-u4_z.obj \
-u4_cstes.obj \
-u4_npc.obj \
-u4_comba.obj \
-u4_spell.obj \
-u4_q_n_v.obj \
-u4_get.obj \
-u4_locate.obj \
-u4_combb.obj \
-u4_combc.obj \
-u4_dng.obj \
-u4_hole.obj \
-u4_mix.obj \
-u4_srch.obj \
-u4_evt.obj \
-u4_ai.obj \
-u4_talk.obj \
-u4_3d.obj \
-u4_srch2.obj \
-u4_peer.obj \
-u4_init.obj \
-u4_shops.obj \
-u4_lb.obj \
-u4_shrin.obj \
-u4_var.obj
+CFLAGS=/Gs /Osa /Zp /Gc
+ASM=\tools\masm300\masm /Mx
+OBJS=er.obj \
+l.obj \
+us.obj \
+fi.obj \
+ut.obj \
+ut2.obj \
+m.obj \
+so.obj \
+ma2.obj \
+do.obj \
+gr.obj \
+ma.obj \
+en.obj \
+an.obj \
+ex.obj \
+z.obj \
+cs.obj \
+np.obj \
+coa.obj \
+sp.obj \
+q.obj \
+ge.obj \
+lo.obj \
+cob.obj \
+coc.obj \
+dn.obj \
+ho.obj \
+mi.obj \
+sr.obj \
+ev.obj \
+ai.obj \
+ta.obj \
+3d.obj \
+sr2.obj \
+pe.obj \
+in.obj \
+sh.obj \
+lb.obj \
+shr.obj \
+va.obj
 
 
 all: install
@@ -60,122 +60,122 @@ u4_main.exe: $(OBJS)
 #u4_var.obj: u4_var.c
 #	msc $(CFLAGS) /J u4_var;
 
-u4_var.obj: u4_var.asm
-	$(ASM) u4_var;
+va.obj: u4_var.asm
+	$(ASM) u4_var,va;
 
-errmsg.obj: errmsg.c
-	msc $(CFLAGS)    errmsg;
+er.obj: errmsg.c
+	msc $(CFLAGS)    errmsg,er;
 
-low.obj: low.asm
-	$(ASM) low;
+l.obj: low.asm
+	$(ASM) low,l;
 
-u4_use.obj: u4_use.c
-	msc $(CFLAGS) /J u4_use;
+us.obj: u4_use.c
+	msc $(CFLAGS) /J u4_use,us;
 
-u4_file.obj: u4_file.c
-	msc $(CFLAGS) /J u4_file;
+fi.obj: u4_file.c
+	msc $(CFLAGS) /J u4_file,fi;
 
-u4_util.obj: u4_util.c
-	msc $(CFLAGS)    u4_util;
+ut.obj: u4_util.c
+	msc $(CFLAGS)    u4_util,ut;
 
-util2.obj: util2.asm
-	$(ASM) util2;
+ut2.obj: util2.asm
+	$(ASM) util2,ut2;
 
-u4_main.obj: u4_main.c
-	msc $(CFLAGS) /J u4_main;
+m.obj: u4_main.c
+	msc $(CFLAGS) /J u4_main,m;
 
-u4_sound.obj: u4_sound.asm
-	$(ASM) u4_sound;
+so.obj: u4_sound.asm
+	$(ASM) u4_sound,so;
 
-u4_main2.obj: u4_main2.c
-	msc $(CFLAGS) /J u4_main2;
+ma2.obj: u4_main2.c
+	msc $(CFLAGS) /J u4_main2,ma2;
 
-u4_dos.obj: u4_dos.asm
-	$(ASM) u4_dos;
+do.obj: u4_dos.asm
+	$(ASM) u4_dos,do;
 
-u4_graph.obj: u4_graph.asm
-	$(ASM) u4_graph;
+gr.obj: u4_graph.asm
+	$(ASM) u4_graph,gr;
 
-u4_map.obj: u4_map.c
-	msc $(CFLAGS) /J u4_map;
+ma.obj: u4_map.c
+	msc $(CFLAGS) /J u4_map,ma;
 
-u4_end.obj: u4_end.c
-	msc $(CFLAGS) /J u4_end;
+en.obj: u4_end.c
+	msc $(CFLAGS) /J u4_end,en;
 
-u4_anim.obj: u4_anim.c
-	msc $(CFLAGS) /J u4_anim;
+an.obj: u4_anim.c
+	msc $(CFLAGS) /J u4_anim,an;
 
-u4_explo.obj: u4_explo.c
-	msc $(CFLAGS)    u4_explo;
+ex.obj: u4_explo.c
+	msc $(CFLAGS)    u4_explo,ex;
 
-u4_z.obj: u4_z.c
-	msc $(CFLAGS)    u4_z;
+z.obj: u4_z.c
+	msc $(CFLAGS)    u4_z,z;
 
-u4_cstes.obj: u4_cstes.c
-	msc $(CFLAGS)    u4_cstes;
+cs.obj: u4_cstes.c
+	msc $(CFLAGS)    u4_cstes,cs;
 
-u4_npc.obj: u4_npc.c
-	msc $(CFLAGS)    u4_npc;
+np.obj: u4_npc.c
+	msc $(CFLAGS)    u4_npc,np;
 
-u4_comba.obj: u4_comba.c
-	msc $(CFLAGS) /J u4_comba;
+coa.obj: u4_comba.c
+	msc $(CFLAGS) /J u4_comba,coa;
 
-u4_spell.obj: u4_spell.c
-	msc $(CFLAGS) /J u4_spell;
+sp.obj: u4_spell.c
+	msc $(CFLAGS) /J u4_spell,sp;
 
-u4_q_n_v.obj: u4_q_n_v.c
-	msc $(CFLAGS) /J u4_q_n_v;
+q.obj: u4_q_n_v.c
+	msc $(CFLAGS) /J u4_q_n_v,q;
 
-u4_get.obj: u4_get.c
-	msc $(CFLAGS)    u4_get;
+ge.obj: u4_get.c
+	msc $(CFLAGS)    u4_get,ge;
 
-u4_locate.obj: u4_locate.c
-	msc $(CFLAGS)    u4_locate;
+lo.obj: u4_locate.c
+	msc $(CFLAGS)    u4_locate,lo;
 
-u4_combb.obj: u4_combb.c
-	msc $(CFLAGS) /J u4_combb;
+cob.obj: u4_combb.c
+	msc $(CFLAGS) /J u4_combb,cob;
 
-u4_combc.obj: u4_combc.c
-	msc $(CFLAGS)    u4_combc;
+coc.obj: u4_combc.c
+	msc $(CFLAGS)    u4_combc,coc;
 
-u4_dng.obj: u4_dng.c
-	msc $(CFLAGS)    u4_dng;
+dn.obj: u4_dng.c
+	msc $(CFLAGS)    u4_dng,dn;
 
-u4_hole.obj: u4_hole.c
-	msc $(CFLAGS)    u4_hole;
+ho.obj: u4_hole.c
+	msc $(CFLAGS)    u4_hole,ho;
 
-u4_mix.obj: u4_mix.c
-	msc $(CFLAGS)    u4_mix;
+mi.obj: u4_mix.c
+	msc $(CFLAGS)    u4_mix,mi;
 
-u4_srch.obj: u4_srch.c
-	msc $(CFLAGS)    u4_srch;
+sr.obj: u4_srch.c
+	msc $(CFLAGS)    u4_srch,sr;
 
-u4_evt.obj: u4_evt.c
-	msc $(CFLAGS)    u4_evt;
+ev.obj: u4_evt.c
+	msc $(CFLAGS)    u4_evt,ev;
 
-u4_ai.obj: u4_ai.c
-	msc $(CFLAGS)    u4_ai;
+ai.obj: u4_ai.c
+	msc $(CFLAGS)    u4_ai,ai;
 
-u4_talk.obj: u4_talk.c
-	msc $(CFLAGS)    u4_talk;
+ta.obj: u4_talk.c
+	msc $(CFLAGS)    u4_talk,ta;
 
-u4_3d.obj: u4_3d.c
-	msc $(CFLAGS)    u4_3d;
+3d.obj: u4_3d.c
+	msc $(CFLAGS)    u4_3d,3d;
 
-u4_srch2.obj: u4_srch2.c
-	msc $(CFLAGS)    u4_srch2;
+sr2.obj: u4_srch2.c
+	msc $(CFLAGS)    u4_srch2,sr2;
 
-u4_peer.obj: u4_peer.c
-	msc $(CFLAGS)    u4_peer;
+pe.obj: u4_peer.c
+	msc $(CFLAGS)    u4_peer,pe;
 
-u4_init.obj: u4_init.c
-	msc $(CFLAGS)    u4_init;
+in.obj: u4_init.c
+	msc $(CFLAGS)    u4_init,in;
 
-u4_shops.obj: u4_shops.c
-	msc $(CFLAGS)    u4_shops;
+sh.obj: u4_shops.c
+	msc $(CFLAGS)    u4_shops,sh;
 
-u4_lb.obj: u4_lb.c
-	msc $(CFLAGS)    u4_lb;
+lb.obj: u4_lb.c
+	msc $(CFLAGS)    u4_lb,lb;
 
-u4_shrin.obj: u4_shrin.c
-	msc $(CFLAGS)    u4_shrin;
+shr.obj: u4_shrin.c
+	msc $(CFLAGS)    u4_shrin,shr;

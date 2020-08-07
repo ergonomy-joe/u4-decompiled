@@ -13,3 +13,57 @@ Very good remakes of the game exist already; this project is not intended to com
 
 I hope you enjoy browsing the code !
 ergonomy_joe
+
+# Steps to compile with "Microsoft C Compiler 4.00"
+
+1. Download dosbox https://www.dosbox.com
+1. Launch dosbox
+1. Use Ctrl+F12 to speed up to ~15k cycles. It speeds up builds.
+1. >MOUNT c "[Local-Directory]/SRC"
+	e.g. MOUNT c "E:\projects\u4-decompiled\SRC"
+1. Download tools
+	1. Go to https://www.pcjs.org/software/pcx86/util/other/unp/4.11/
+	1. In the dropdown under the command prompt select "UNP (Executable Unpacker) Source"
+	1. Click "Load" and then "Save"
+	1. In the dropdown select "MS C 4.00 (Disk 1)"
+	1. Rename downloaded file to MSC1.img
+	1. In the dropdown select "MS C 4.00 (Disk 2)"
+	1. Rename downloaded file to MSC2.img
+	1. In the dropdown select "MS C 4.00 (Disk 3)"
+	1. Rename downloaded file to MSC3.img
+	1. Go to https://winworldpc.com/product/borland-turbo-c/2x
+	1. Download "Borland Turbo C 2.0 (3.5)"
+	1. Extract disk2.img from download and place with other img files
+1. Extract tools
+	1. >mkdir C:\tools
+	1. >mkdir C:\tools\MSC400
+	1. >mkdir C:\tools\MASM300
+	1. >mkdir C:\tools\MASM300\LIB
+	1. >mkdir C:\tools\MASM300\INCLUDE
+	1. >mkdir C:\tools\turboc20
+	1. >mkdir C:\ORIGINAL
+	1. >MOUNT d "[Local Directory with img files]"
+	1. >imgmount a D:\UNP411~1.IMG -t floppy
+	1. >copy A:\UNP.EXE C:\TOOLS
+	1. >imgmoung -u a
+	1. >imgmount a D:\MSC1.IMG -t floppy
+	1. >copy A:\*.* C:\tools\MSC400
+	1. >imgmoung -u a
+	1. >imgmount a D:\MSC2.IMG -t floppy
+	1. >copy A:\EXEPACK.EXE C:\tools
+	1. >imgmoung -u a
+	1. >imgmount a D:\MSC3.IMG -t floppy
+	1. >copy A:\*.* C:\tools\MSC400\LIB
+	1. >copy A:\LINK.EXE C:\tools\MSC400
+	1. >imgmoung -u a
+	1. >imgmount a D:\disk2.IMG -t floppy
+	1. >copy A:\LINK.EXE C:\tools\MASM300
+	1. >copy A:\LINK.EXE C:\tools
+	1. >copy A:\MASM.EXE C:\tools\MASM300
+	1. >imgmount -u a
+	1. >imgmount a D:\disk2.img -t floppy
+	1. >copy A:\MAKE.EXE C:\TOOLS\TURBOC20
+1. Build
+	1. >DOIT
+		1. If the linker gives you any prompts just go with the default (hit enter)
+	
