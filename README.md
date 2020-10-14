@@ -47,17 +47,17 @@ ergonomy_joe
 	1. >MOUNT d "[Local Directory with img files]"
 	1. >imgmount a D:\UNP411~1.IMG -t floppy
 	1. >copy A:\UNP.EXE C:\TOOLS
-	1. >imgmoung -u a
+	1. >imgmount -u a
 	1. >imgmount a D:\MSC1.IMG -t floppy
 	1. >copy A:\*.* C:\tools\MSC400
-	1. >imgmoung -u a
+	1. >imgmount -u a
 	1. >imgmount a D:\MSC2.IMG -t floppy
 	1. >copy A:\EXEPACK.EXE C:\tools
-	1. >imgmoung -u a
+	1. >imgmount -u a
 	1. >imgmount a D:\MSC3.IMG -t floppy
 	1. >copy A:\*.* C:\tools\MSC400\LIB
 	1. >copy A:\LINK.EXE C:\tools\MSC400
-	1. >imgmoung -u a
+	1. >imgmount -u a
 	1. >imgmount a D:\MASM300.IMG -t floppy
 	1. >copy A:\LINK.EXE C:\tools\MASM300
 	1. >copy A:\LINK.EXE C:\tools
