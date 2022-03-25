@@ -4,6 +4,9 @@
  * reverse-coded by Ergonomy Joe in 2012
  */
 
+/*thanks to Fenyx4 for the variable
+ name issue fix*/
+
 #include "title.h"
 
 #include <malloc.h>
@@ -27,10 +30,10 @@
 #define M_or_F static_C
 #define tmp_str static_D
 #define D_6940 static_E
-#define tmp_int static_F
+#define tmp_dex static_F
 #define curQuestionIndex static_G
 #define player_name static_H
-#define tmp_dex static_I
+#define tmp_int static_I
 #define tmp_karma static_J
 /*====---- ----====*/
 
@@ -663,8 +666,8 @@ unsigned bp04;/*left or right*/
 
 /*characterisics increments by virtue*/
 unsigned char D_30B2[] = {0, 0, 3, 0, 1, 1, 1, 0};/*str*/
-unsigned char D_30BA[] = {0, 3, 0, 1, 1, 0, 1, 0};/*int*/
-unsigned char D_30C2[] = {3, 0, 0, 1, 0, 1, 1, 0};/*dex*/
+unsigned char D_30BA[] = {0, 3, 0, 1, 1, 0, 1, 0};/*dex*/
+unsigned char D_30C2[] = {3, 0, 0, 1, 0, 1, 1, 0};/*int*/
 
 /*dilemmas text indexes*/
 unsigned char D_30CA[] = {
@@ -683,7 +686,7 @@ C_2C12()
 	unsigned char loc_B, loc_C;
 	unsigned char loc_D[8];
 
-	tmp_str = tmp_dex = tmp_int = 15;
+	tmp_str = tmp_int = tmp_dex = 15;
 	curQuestionIndex = 0;
 	for(loc_A = 7; loc_A >= 0; loc_A--) {
 		loc_D[loc_A] = 0;
@@ -743,8 +746,8 @@ C_2C12()
 		loc_D[lastVirtue] = 1;
 		tmp_karma[lastVirtue] += 5;
 		tmp_str += D_30B2[lastVirtue];
-		tmp_int += D_30BA[lastVirtue];
-		tmp_dex += D_30C2[lastVirtue];
+		tmp_dex += D_30BA[lastVirtue];
+		tmp_int += D_30C2[lastVirtue];
 		C_2B2A(0, lastVirtue, curQuestionIndex);
 		/*discarded virtue*/
 		loc_D[loc_C] = 0xff;
@@ -785,8 +788,8 @@ C_2E04()
 	memcpy(&(Party.chara[0]), &loc_B, sizeof(struct tChara));
 	strcpy(Party.chara[0]._name, player_name);
 	Party.chara[0]._str = tmp_str;
-	Party.chara[0]._int = tmp_dex;
-	Party.chara[0]._dex = tmp_int;
+	Party.chara[0]._int = tmp_int;
+	Party.chara[0]._dex = tmp_dex;
 	Party.chara[0].p_24 = (M_or_F == 'M')?0x0b:0x0c;
 	for(loc_A = 31; loc_A >= 0; loc_A --) {
 		D_6976._npc._000[loc_A] =
