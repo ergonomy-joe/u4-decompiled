@@ -13,27 +13,150 @@
 
 ----------------------------------------*/
 
-/*enemy HP*/
+/*base for enemy HP/XP/attack*/
 unsigned char D_23D2[] = {
-	0xFF,0xFF,0x40,0x60,0x80,0x60,0xFF,0xFF,0x30,0x30,0x40,0x50,0x30,
-	0x60,0x30,0xC0,0xFF,0x30,0xF0,0x80,0x50,0x30,0x50,0x30,0x70,0x40,
-	0x80,0x40,0xB0,0xC0,0x60,0xF0,0x70,0xD0,0xE0,0xFF,0x70,0x30,0x60,
-	0x40,0x60,0x80,0x90,0x30,0x80,0x30,0x30,0x30,0x20,0x20,0x80,0xFF
+	/*80~8f*/
+	0xFF,/*pirate*/
+	0xFF,/*pirate*/
+	0x40,/*nixie*/
+	0x60,/*squid*/
+	0x80,/*serpent*/
+	0x60,/*seahorse*/
+	0xFF,/*whirlpool*/
+	0xFF,/*twister*/
+	/*90~AF*/
+	0x30,/*rat*/
+	0x30,/*bat*/
+	0x40,/*spider*/
+	0x50,/*ghost*/
+	0x30,/*slime*/
+	0x60,/*troll*/
+	0x30,/*gremlin*/
+	0xC0,/*mimic*/
+	0xFF,/*reaper*/
+	0x30,/*insects*/
+	0xF0,/*gazer*/
+	0x80,/*phantom*/
+	0x50,/*orc*/
+	0x30,/*skeleton*/
+	0x50,/*rogue*/
+	0x30,/*python*/
+	0x70,/*ettin*/
+	0x40,/*headless*/
+	0x80,/*cyclops*/
+	0x40,/*wisp*/
+	0xB0,/*mage*/
+	0xC0,/*lyche*/
+	0x60,/*lava lizard*/
+	0xF0,/*zorn*/
+	0x70,/*daemon*/
+	0xD0,/*hydra*/
+	0xE0,/*dragon*/
+	0xFF,/*balron*/
+	/*20~2f[buggy]*/
+	0x70,/*mage*/
+	0x30,/*bard*/
+	0x60,/*fighter*/
+	0x40,/*druid*/
+	0x60,/*tinker*/
+	0x80,/*paladin*/
+	0x90,/*ranger*/
+	0x30,/*shepherd*/
+	/*50~5f[buggy]*/
+	0x80,/*guard*/
+	0x30,/*merchant*/
+	0x30,/*bard*/
+	0x30,/*jester*/
+	0x20,/*beggar/sleep*/
+	0x20,/*child*/
+	0x80,/*bull*/
+	0xFF /*lord british*/
 };
 
-/*enemy tile*/
+/*enemy tile "partners"*/
 unsigned char D_2406[] = {
-	TIL_C8,TIL_C8,TIL_8A,TIL_88,TIL_86,TIL_84,TIL_8C,TIL_8E,TIL_C4,
-	TIL_E9,TIL_90,TIL_E4,TIL_A0,TIL_D0,TIL_A8,TIL_AC,TIL_B0,TIL_90,
-	TIL_BC,TIL_9C,TIL_A4,TIL_E0,TIL_C8,TIL_90,TIL_F0,TIL_B8,TIL_EC,
-	TIL_BC,TIL_F0,TIL_F0,TIL_F4,TIL_B8,TIL_FC,TIL_F8,TIL_FC,TIL_FC
+	/*80~8f*/
+	TIL_C8,/*pirate->rogue*/
+	TIL_C8,/*pirate->rogue*/
+	TIL_8A,/*nixie->seahorse*/
+	TIL_88,/*squid->serpent*/
+	TIL_86,/*serpent->squid*/
+	TIL_84,/*seahorse->nixie*/
+	TIL_8C,/*whirlpool->whirlpool*/
+	TIL_8E,/*twister->twister*/
+	/*90~AF*/
+	TIL_C4,/*rat->skeleton*/
+	TIL_E9,/*bat->lava lizard*/
+	TIL_90,/*spider->rat*/
+	TIL_E4,/*ghost->lyche*/
+	TIL_A0,/*slime->slime*/
+	TIL_D0,/*troll->ettin*/
+	TIL_A8,/*gremlin->gremlin*/
+	TIL_AC,/*mimic->mimic*/
+	TIL_B0,/*reaper->reaper*/
+	TIL_90,/*insects->rat*/
+	TIL_BC,/*gazer->phantom*/
+	TIL_9C,/*phantom->ghost*/
+	TIL_A4,/*orc->troll*/
+	TIL_E0,/*skeleton->mage*/
+	TIL_C8,/*rogue->rogue*/
+	TIL_90,/*python->rat*/
+	TIL_F0,/*ettin->daemon*/
+	TIL_B8,/*headless->gazer*/
+	TIL_EC,/*cyclops->zorn*/
+	TIL_BC,/*wisp->phantom*/
+	TIL_F0,/*mage->daemon*/
+	TIL_F0,/*lyche->daemon*/
+	TIL_F4,/*lava lizard->hydra*/
+	TIL_B8,/*zorn->gazer*/
+	TIL_FC,/*daemon->balron*/
+	TIL_F8,/*hydra->dragon*/
+	TIL_FC,/*dragon->balron*/
+	TIL_FC /*balron->balron*/
 };
 
 /*enemy number*/
 unsigned char D_242A[] = {
-	/*80~8F*/ 1, 1,12, 4, 4, 8, 1, 1,
-	/*90~AF*/12,12, 6, 4,15, 6,15, 1, 1,15, 4, 8,10,12,10,12, 6, 8, 6,12, 6, 4, 8, 4, 6, 4, 4, 1,
-	 0, 0
+	/*80~8F*/
+	 1,/*pirate*/
+	 1,/*pirate*/
+	12,/*nixie*/
+	 4,/*squid*/
+	 4,/*serpent*/
+	 8,/*seahorse*/
+	 1,/*whirlpool*/
+	 1,/*twister*/
+	/*90~AF*/
+	12,/*rat*/
+	12,/*bat*/
+	 6,/*spider*/
+	 4,/*ghost*/
+	15,/*slime*/
+	 6,/*troll*/
+	15,/*gremlin*/
+	 1,/*mimic*/
+	 1,/*reaper*/
+	15,/*insects*/
+	 4,/*gazer*/
+	 8,/*phantom*/
+	10,/*orc*/
+	12,/*skeleton*/
+	10,/*rogue*/
+	12,/*python*/
+	 6,/*ettin*/
+	 8,/*headless*/
+	 6,/*cyclops*/
+	12,/*wisp*/
+	 6,/*mage*/
+	 4,/*lyche*/
+	 8,/*lava lizard*/
+	 4,/*zorn*/
+	 6,/*daemon*/
+	 4,/*hydra*/
+	 4,/*dragon*/
+	 1,/*balron*/
+	/* */
+/*__244e*/0, 0/*padding?*/
 };
 
 /*weapons damage*/
@@ -52,7 +175,44 @@ unsigned char bp04;
 			return bp04 >> 1;
 		return (bp04 >> 2) + 4;
 	}
+	/* not monster */
+#ifdef WIN32
+	return ((bp04&0x1f) >> 1) + 0x24;
+#else
+	/*this looks like an original bug:
+	the values from D_23D2 are not
+	correctly indexed.
+	Without the patch the index will go
+	out-of-bound and access unrelated values
+	from D_2406. Hence, except for the mage
+	ans the fighter, all the non-monster
+	livings will get faulty values.
+	On the original environement:
+	  mage         0x70 should be 0x70
+	  bard         0x60 should be 0x30
+	  fighter      0x60 should be 0x60
+	  druid        0x90 should be 0x40
+	  tinker       0x80 should be 0x60
+	  paladin      0x30 should be 0x80
+	  ranger       0x20 should be 0x90
+	  shepherd     0x80 should be 0x30
+	  guard        0xC8 should be 0x80
+	  merchant     0x8A should be 0x30
+	  bard         0x86 should be 0x30
+	  jester       0x8C should be 0x30
+	  beggar/sleep 0xC4 should be 0x20
+	  child        0x90 should be 0x20
+	  bull         0xA0 should be 0x80
+	  lord british 0xA8 should be 0xFF
+
+	  because of different padding/alignement
+	  policies, we may get different values
+	  with another compiler.
+	 (issue raised by @plaidpants,
+	 with cooperation from @Fenyx4)
+	*/
 	return (bp04&0x1f) + 0x24;
+#endif
 }
 
 char *D_2512[] = {
@@ -214,6 +374,7 @@ C_7E7E()
 			loc_D = U4_RND1(15);
 		} while(Fighters._tile[loc_D]);
 		loc_E = D_9452;
+		/* add some "partners" */
 		if(D_9452 > TIL_80 && loc_B) {
 			if(U4_RND1(31) == 0) {
 				loc_E = D_2406[C_7C25(D_2406[C_7C25(D_9452)])];
@@ -221,6 +382,7 @@ C_7E7E()
 				loc_E = D_2406[C_7C25(D_9452)];
 			}
 		}
+		/* */
 		Fighters._tile[loc_D] = Fighters._gtile[loc_D] = loc_E;
 		loc_C = D_23D2[C_7C25(loc_E)];
 		Fighters._HP[loc_D] = (loc_C >> 1) | U4_RND4(loc_C);

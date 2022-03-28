@@ -194,11 +194,11 @@ unsigned char _damage;
 	} else {
 		int loc_D, loc_C, loc_B, loc_A;
 
-		loc_B = loc_A = D_23D2[C_7C25(Fighters._tile[_npcId])] / 2;
-		loc_B >>= 1;
-		loc_C = loc_B + loc_A;
+		loc_B = loc_A = D_23D2[C_7C25(Fighters._tile[_npcId])] / 2;/*50% HP*/
+		loc_B >>= 1;/*25% HP*/
+		loc_C = loc_B + loc_A;/*75% HP*/
 		loc_D = Fighters._HP[_npcId];
-		if(loc_D < 0x18) {
+		if(loc_D < 24) {
 			u4_puts(/*D_2009*/"Fleeing!\n");
 		} else if(loc_D < loc_B) {
 			u4_puts(/*D_2013*/"Critical!\n");
