@@ -92,6 +92,7 @@ unsigned char bp04;
 	D_8742._npc._y[si] = bp04;
 }
 
+/*NPC attempts move[MOD_OUTDOORS]*/
 C_5062(bp0a, bp08, bp06, bp04)
 int bp0a;
 int bp08;
@@ -124,6 +125,7 @@ int bp04;
 		C_5062(bp0a, u4_sign((char)u_rand_a()), u4_sign((char)u_rand_a()), bp04 - 1);
 }
 
+/*NPC attempts move[MOD_BUILDING]*/
 C_51A7(bp0a, bp08, bp06, bp04)
 int bp0a;
 int bp08;
@@ -134,6 +136,13 @@ int bp04;/*# of tries*/
 
 	bp_02 = D_8742._npc._x[bp0a];
 	bp_04 = D_8742._npc._y[bp0a];
+	/*D_8742._map.x32x32 is accessed without any out-of-bounds control.
+Fortunately, there is some control in C_4E94 so any faultly-accessed
+value will be discarded anyway.
+It doesn't seem to cause any problem on the original environment, but
+programmers attempting to build the code for a more recent environment
+might experience an exception here
+(issue raised by @plaidpants)*/
 	if(U4_RND1(1) && bp08) {
 		if(C_4E94(bp0a, bp08+bp_02, bp_04, D_8742._map.x32x32[bp_04][bp08+bp_02]))
 			C_4FF8(bp0a, bp08+bp_02, bp_04);
@@ -152,7 +161,7 @@ int bp04;/*# of tries*/
 		C_51A7(bp0a, u4_sign((char)u_rand_a()), u4_sign((char)u_rand_a()), bp04 - 1);
 }
 
-/*move town NPC*/
+/*move NPCs[MOD_BUILDING]*/
 C_5293()
 {
 	int bp_02, bp_04;
@@ -351,7 +360,7 @@ int bp04;
 	;
 }
 
-/*move outside NPC*/
+/*move NPCs[MOD_OUTDOORS]*/
 C_5712()
 {
 	int loc_A, loc_B, loc_C, loc_D;
@@ -396,7 +405,6 @@ C_5712()
 			C_5062(loc_F, u4_sign((char)u_rand_a()), u4_sign((char)u_rand_a()), 1);
 		else
 			C_5062(loc_F, loc_A, loc_B, 2);
-#undef loc_H
 	} while(--loc_F >= 0);
 }
 
