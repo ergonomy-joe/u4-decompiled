@@ -380,11 +380,8 @@ C_3C54()
 				*loc_D = *loc_C = TIL_38;
 			} else {
 /*C_3D35*/
-#if 0
-				*loc_D = *loc_C ^= (u_rand_b() & u_rand_a() & 1)/*TODO*/;
-#else
+/*note: I had a hard time figuring out how to get this statement right*/
 				*loc_D = *loc_C ^= U4_RND1(U4_RND2(1));
-#endif
 			}
 		}
 		for(loc_A = Party.f_1d8 - 1; loc_A >= 0; loc_A --) {

@@ -270,12 +270,16 @@ int bp04;
 /*C_6882*/SPL_Energy()
 {
 	unsigned char *loc_D;
-	unsigned loc_B;
+	int loc_B;
 	int loc_A, loc_C, loc_E;
 
 	u4_puts(/*D_20FE*/"Energy type? ");
 	loc_B = (unsigned char)u_kbread();
-	u4_toupper(loc_B);/*TODO*/
+/*bad hack:I must force the redefinition of u4_islower
+int order to get the compiler to provide
+the original bytecode*/
+#define u4_islower(c) ((c) >= (int)'a' && (c) <= (int)'z')
+	u4_toupper(loc_B);
 	switch(loc_B) {
 		case 'P'/*oison*/:    loc_E = TIL_44; break;
 		case 'L'/*ightning*/: loc_E = TIL_45; break;
