@@ -793,7 +793,7 @@ char *D_51BE[] = {
 {
 	int loc_A;
 	char loc_B;
-	unsigned *loc_C;
+	U16 *loc_C;
 
 	D_9142 = D_5196[Party._loc - 1] - 1;
 	Gra_13();

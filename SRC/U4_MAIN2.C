@@ -9,7 +9,7 @@
 unsigned D_07F8 = 1;
 
 /*karmas*/
-unsigned /*D_07FA*/*pKarmas[] = {
+U16 /*D_07FA*/*pKarmas[] = {
 	&(Party._hones),
 	&(Party._compa),
 	&(Party._valor),

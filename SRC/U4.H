@@ -340,7 +340,7 @@ extern struct tPSP far *far_psp;/*D_0078*/
 extern unsigned /*D_0672*/cursor_rate;
 extern char cdecl /*D_06A6*/SoundFlag;
 extern unsigned D_07F8;
-extern unsigned /*D_07FA*/*pKarmas[];
+extern U16 /*D_07FA*/*pKarmas[];
 extern int /*D_080A*/activeCharaX;
 extern char D_080C[], D_0810[];
 extern char D_0814[], D_081C[];/*moongates positions*/

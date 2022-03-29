@@ -38,7 +38,7 @@ int bp04;
 int bp06;
 int bp04;
 {
-	register unsigned *si = Party.chara[bp06]._HP;
+	register U16 *si = Party.chara[bp06]._HP;
 	if((si[0] += bp04) > si[1])
 		si[0] = si[1];
 }
@@ -53,7 +53,7 @@ int bp04;
 
 /*increment karma (max 99)*/
 /*C_09F8*/karma_inc(bp06, bp04)
-unsigned *bp06;
+U16 *bp06;
 unsigned bp04;
 {
 	if(*bp06) {
@@ -65,7 +65,7 @@ unsigned bp04;
 
 /*decrement karma*/
 /*C_0A17*/karma_dec(bp06, bp04)
-unsigned *bp06;
+U16 *bp06;
 unsigned bp04;
 {
 	if(*bp06 == 0) {

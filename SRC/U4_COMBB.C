@@ -142,22 +142,22 @@ unsigned char bp04;
 	for(loc_A = 3; loc_A >= 0; loc_A --) {
 		if(D_95B2[(loc_A << 2)]) {
 			if(
-				(bp06 << 12) == (*(unsigned *)(D_95B2+(loc_A << 2)) & 0xf000) &&
-				(bp04 <<  8) == (*(unsigned *)(D_95B2+(loc_A << 2)) & 0x0f00)
+				(bp06 << 12) == (*(U16 *)(D_95B2+(loc_A << 2)) & 0xf000) &&
+				(bp04 <<  8) == (*(U16 *)(D_95B2+(loc_A << 2)) & 0x0f00)
 			) {
-				loc_B = *(unsigned *)(D_95B2+(loc_A << 2)+2) & 0xf;
+				loc_B = *(U16 *)(D_95B2+(loc_A << 2)+2) & 0xf;
 				if(
 					loc_B |
-					(loc_C = (*(unsigned *)(D_95B2+(loc_A << 2)+2) >> 4) & 0xf)
+					(loc_C = (*(U16 *)(D_95B2+(loc_A << 2)+2) >> 4) & 0xf)
 				) Combat_MAP(loc_B, loc_C) = D_95B2[(loc_A << 2)];
-				loc_B = (*(unsigned *)(D_95B2+(loc_A << 2)+2) >> 8) & 0xf;
+				loc_B = (*(U16 *)(D_95B2+(loc_A << 2)+2) >> 8) & 0xf;
 				if(
 					loc_B |
-					(loc_C = (*(unsigned *)(D_95B2+(loc_A << 2)+2) >> 12) & 0xf)
+					(loc_C = (*(U16 *)(D_95B2+(loc_A << 2)+2) >> 12) & 0xf)
 				) Combat_MAP(loc_B, loc_C) = D_95B2[(loc_A << 2)] & 0xff;
 			}
 		}
-	}/* while(--loc_A >= 0);*/
+	}
 }
 
 /*move [fight]*/
