@@ -30,11 +30,8 @@ _DATA	ENDS
 _BSS	SEGMENT PUBLIC WORD 'BSS'
 ;----------------------------------------
 ;random seeds
-PUBLIC seed_0,seed_1,seed_2,seed_3
-seed_0	dd ?	;D_6966
-seed_1	dd ?	;D_696A
-seed_2	dd ?	;D_696E
-seed_3	dd ?	;D_6972
+PUBLIC seed_128
+seed_128	db 10h dup(?)	;D_6966
 ;-- struct t_500 --
 PUBLIC D_6976
 D_6976	db 500h dup(?)
@@ -138,7 +135,7 @@ _u_delay	ENDP
 ;----------------------------------------C_31ED
 PUBLIC u_rand_a
 u_rand_a	PROC NEAR
-	PUSHF	
+	PUSHF
 	PUSH	CX
 	PUSH	DI
 	PUSH	ES
@@ -148,16 +145,16 @@ u_rand_a	PROC NEAR
 	STD
 	;--
 	MOV	CX,0Eh
-	MOV	DI,OFFSET DGROUP:seed_3+2
-	CLC	
+	MOV	DI,OFFSET DGROUP:seed_128 + 0Eh
+	CLC
 	MOV	AL,[DI+01]
 C_3200:	ADC	AL,[DI]
-	STOSB	
+	STOSB
 	LOOP	C_3200
 	ADC	[DI],AL
 	;--
 	MOV	CX,10h
-	MOV	DI,OFFSET DGROUP:seed_3+4
+	MOV	DI,OFFSET DGROUP:seed_128 + 10h
 C_320D:	DEC	DI
 	INC	BYTE PTR [DI]
 	LOOPZ	C_320D
@@ -165,9 +162,9 @@ C_320D:	DEC	DI
 	POP	ES
 	POP	DI
 	POP	CX
-	POPF	
+	POPF
 	;--
-	MOV	AL,BYTE PTR seed_0[0]
+	MOV	AL,seed_128[0]
 	MOV	AH,0
 	TEST	AL,0FFh
 	;--
@@ -176,18 +173,18 @@ u_rand_a	ENDP
 ;----------------------------------------C_321E
 PUBLIC u_rand_b
 u_rand_b	PROC NEAR
-	MOV	AL,BYTE PTR seed_0[3]
-	ADC	AL,BYTE PTR seed_0[2]
-	MOV	BYTE PTR seed_0[2],AL
-	XOR	BYTE PTR seed_0[1],AL
-	MOV	AL,BYTE PTR seed_0[1]
-	ADC	AL,BYTE PTR seed_0[0]
+	MOV	AL,seed_128[3]
+	ADC	AL,seed_128[2]
+	MOV	seed_128[2],AL
+	XOR	seed_128[1],AL
+	MOV	AL,seed_128[1]
+	ADC	AL,seed_128[0]
 	ROR	AL,1
-	MOV	BYTE PTR seed_0[0],AL
-	MOV	BYTE PTR seed_0[3],AL
+	MOV	seed_128[0],AL
+	MOV	seed_128[3],AL
 	MOV	AH,0
 	TEST	AX,0FFFFh
-	RET	
+	RET
 u_rand_b	ENDP
 ;----------------------------------------C_3241
 ;increment Party.f_000
@@ -222,7 +219,7 @@ C_3267:	;--
 C_326D:	;-- --
 	OR	AX,AX
 	;--
-	RET	
+	RET
 u_kbhit	ENDP
 ;----------------------------------------C_3270
 ;get keyboard scancode
@@ -240,17 +237,17 @@ u_kbread	PROC NEAR
 	MOV	AH,0	;wait for keypress and read character
 	INT	16h
 	;--
-	RET	
+	RET
 u_kbread	ENDP
 ;----------------------------------------C_3280
 ;wait while key pressed
 PUBLIC u_kbflush
 u_kbflush	PROC NEAR
 	;-- allow interrupts
-	STI	
-	NOP	
-	NOP	
-	NOP	
+	STI
+	NOP
+	NOP
+	NOP
 	CLI
 	;--
 	CALL	u_kbhit
@@ -269,7 +266,7 @@ C_3290	PROC NEAR
 	INC	AL
 	MOV	AH,0
 	;--
-	RET	
+	RET
 C_3290	ENDP
 ;----------------------------------------
 ;select disk
@@ -318,7 +315,7 @@ C_32AB	ENDP
 ;failure => -1
 PUBLIC C_32CB
 C_32CB	PROC NEAR
-	PUSHF	
+	PUSHF
 	PUSH	BX
 	PUSH	AX
 	PUSH	CX
@@ -330,29 +327,29 @@ C_32CB	PROC NEAR
 	MOV	BP,SP
 	PUSH	DI
 	PUSH	SI
-	;--
+	;-- set drive
 	MOV	AH,19h	;get current default drive
 	INT	21h
 	CMP	AL,1
 	JBE	C_32E1
 	MOV	AL,0
-C_32E1:	MOV	DL,AL
+C_32E1:	MOV	DL,AL	;drive
 	;--
 	MOV	SI,4	;4 tries
-	MOV	CL,10h
+	MOV	CL,10h	;from sector 10h
 nextSector:	;-- read one sector to c000:0000
-	MOV	AX,(2 SHL 8) OR 1
-	MOV	DH,0
-	MOV	CH,9
+	MOV	AX,(2 SHL 8) OR 1	;read 1 sector
+	MOV	DH,0	;head 0
+	MOV	CH,9	;track 9
 	MOV	BX,0C000h
 	MOV	ES,BX
-	XOR	BX,BX
+	XOR	BX,BX	;to c000:0000
 	INT	13h
 	JB	C_3303
 	;-- one track success
 	DEC	CL
-	JZ	C_330C
-	MOV	SI,4
+	JZ	C_330C	;finished
+	MOV	SI,4	;4 tries
 	JMP	nextSector
 C_3303:	;-- failed this sector
 	DEC	SI
@@ -375,7 +372,7 @@ C_330F:	;--
 	POP	AX
 	MOV	AL,BL
 	POP	BX
-	POPF	
+	POPF
 	RET
 C_32CB	ENDP
 ;----------------------------------------
@@ -392,7 +389,7 @@ C_331E	PROC NEAR
 	INT	21h
 	;--
 	POP	DS
-	RET	
+	RET
 C_331E	ENDP
 ;----
 INT_332F:
@@ -444,7 +441,7 @@ C_336C:	;--
 	POP	BX
 	POP	BP
 	MOV	AL,1
-	IRET	
+	IRET
 C_3388:	;-- display fatal error
 	LEA	AX,MSG_SYSERR
 	PUSH	AX
@@ -458,7 +455,7 @@ C_3388:	;-- display fatal error
 	POP	BX
 	POP	BP
 	MOV	AL,2
-	IRET	
+	IRET
 ;----------------------------------------
 _TEXT	ENDS
 ;########################################

@@ -1,10 +1,7 @@
 PUBLIC far_psp
 PUBLIC speed_info,equip_flags,patch_tandy
 
-EXTRN seed_0:DWORD
-EXTRN seed_1:DWORD
-EXTRN seed_2:DWORD
-EXTRN seed_3:DWORD
+EXTRN seed_128:BYTE
 
 EXTRN __psp:WORD
 
@@ -98,17 +95,17 @@ low_init	PROC NEAR
 	;----------------------------
 	MOV	AH,2Ch
 	INT	21h
-	MOV	WORD PTR seed_0,DX
-	MOV	WORD PTR seed_0+2,CX
-	MOV	WORD PTR seed_2,DX
-	MOV	WORD PTR seed_2+2,CX
+	MOV	WORD PTR seed_128[0],DX
+	MOV	WORD PTR seed_128[2],CX
+	MOV	WORD PTR seed_128[8],DX
+	MOV	WORD PTR seed_128[0Ah],CX
 	;--
 	MOV	AH,2Ah
 	INT	21h
-	MOV	WORD PTR seed_1,DX
-	MOV	WORD PTR seed_1+2,CX
-	MOV	WORD PTR seed_3,DX
-	MOV	WORD PTR seed_3+2,CX
+	MOV	WORD PTR seed_128[4],DX
+	MOV	WORD PTR seed_128[6],CX
+	MOV	WORD PTR seed_128[0Ch],DX
+	MOV	WORD PTR seed_128[0Eh],CX
 	;--------------------------
 	;-- Check computer speed --
 	;--------------------------
@@ -169,7 +166,7 @@ C_010D:	MOV	speed_info,AX
 	POP	BP
 	RET
 low_init	ENDP
-;---
+;----
 PUBLIC low_clean	;C_0115
 low_clean	PROC NEAR
 	PUSH	BP
@@ -205,7 +202,7 @@ C_013E:	;--
 	POP	BP
 	RET
 low_clean	ENDP
-;---
+;----
 INT_0141:
 	INC	CS:C_0010
 	IRET

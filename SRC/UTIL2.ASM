@@ -30,11 +30,8 @@ _DATA	ENDS
 _BSS	SEGMENT PUBLIC WORD 'BSS'
 ;----------------------------------------
 ;random seeds
-PUBLIC seed_0,seed_1,seed_2,seed_3
-seed_0	dd ?	;D_8732
-seed_1	dd ?	;D_8736
-seed_2	dd ?	;D_873A
-seed_3	dd ?	;D_873E
+PUBLIC seed_128
+seed_128	db 10h dup(?)	;D_8732
 ;-- struct t_500 --
 PUBLIC D_8742
 D_8742	db 500h dup(?)
@@ -148,7 +145,7 @@ u_rand_a	PROC NEAR
 	STD
 	;--
 	MOV	CX,0Eh
-	MOV	DI,OFFSET DGROUP:seed_3+2
+	MOV	DI,OFFSET DGROUP:seed_128 + 0Eh
 	CLC
 	MOV	AL,[DI+01]
 C_1784:	ADC	AL,[DI]
@@ -157,7 +154,7 @@ C_1784:	ADC	AL,[DI]
 	ADC	[DI],AL
 	;--
 	MOV	CX,10h
-	MOV	DI,OFFSET DGROUP:seed_3+4
+	MOV	DI,OFFSET DGROUP:seed_128 + 10h
 C_1791:	DEC	DI
 	INC	BYTE PTR [DI]
 	LOOPZ	C_1791
@@ -167,7 +164,7 @@ C_1791:	DEC	DI
 	POP	CX
 	POPF
 	;--
-	MOV	AL,BYTE PTR seed_0
+	MOV	AL,seed_128[0]
 	MOV	AH,0
 	TEST	AL,0FFh
 	;--
@@ -176,15 +173,15 @@ u_rand_a	ENDP
 ;----------------------------------------C_17A2
 PUBLIC u_rand_b
 u_rand_b	PROC NEAR
-	MOV	AL,BYTE PTR seed_0[3]
-	ADC	AL,BYTE PTR seed_0[2]
-	MOV	BYTE PTR seed_0[2],AL
-	XOR	BYTE PTR seed_0[1],AL
-	MOV	AL,BYTE PTR seed_0[1]
-	ADC	AL,BYTE PTR seed_0[0]
+	MOV	AL,seed_128[3]
+	ADC	AL,seed_128[2]
+	MOV	seed_128[2],AL
+	XOR	seed_128[1],AL
+	MOV	AL,seed_128[1]
+	ADC	AL,seed_128[0]
 	ROR	AL,1
-	MOV	BYTE PTR seed_0[0],AL
-	MOV	BYTE PTR seed_0[3],AL
+	MOV	seed_128[0],AL
+	MOV	seed_128[3],AL
 	MOV	AH,0
 	TEST	AX,0FFFFh
 	RET
@@ -340,7 +337,7 @@ C_1865:	MOV	DL,AL	;drive
 	;--
 	MOV	SI,4	;4 tries
 	MOV	CL,10h	;from sector 10h
-nextSector:	;--
+nextSector:	;-- read one sector to c000:0000
 	MOV	AX,(2 SHL 8) OR 1	;read 1 sector
 	MOV	DH,0	;head 0
 	MOV	CH,9	;track 9
@@ -420,7 +417,7 @@ INT_18B3:
 	PUSH	AX
 	CALL	u4_puts
 	;--
-	MOV	AH,0
+	MOV	AH,0	;wait for keypress and read character
 	INT	16h
 	;--
 	MOV	txt_X,0
