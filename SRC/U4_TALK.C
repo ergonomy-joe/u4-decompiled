@@ -228,11 +228,7 @@ register char *si;
 {
 	register char **di;
 
-#ifdef WIN32
-	for(di = D_8CCE; di != D_8CCE + 12; ) {
-#else
-	for(di = D_8CCE; di != &D_8CE6/*TODO:is this correct?*/; ) {
-#endif
+	for(di = &(D_8CCE[0]); di != &(D_8CCE[12]); ) {
 		*(di++) = si;
 		while(*(si++));
 	}
