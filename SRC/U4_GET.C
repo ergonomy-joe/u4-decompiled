@@ -31,6 +31,8 @@ int bp04;
 	register unsigned si;
 
 	if(((si = U4_RND1(3))&1) == 0) {
+		/*note:si's bit 0 is always reset when reaching here,
+		 therefore, Sleep or Poison trap never occur.*/
 		si &= u_rand_a();
 		if(si == 0)
 			u4_puts(/*D_2259*/"Acid");

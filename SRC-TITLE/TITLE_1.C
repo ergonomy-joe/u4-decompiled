@@ -708,9 +708,8 @@ C_2C12()
 			loc_C = u_rand_a() & 7;
 		while(loc_D[loc_C&0xff] || loc_C == loc_B);
 		if(loc_C < loc_B) {
-			loc_A = loc_B;
-			loc_B = loc_C;
-			loc_C = loc_A;
+			/*swap(loc_B,loc_C);*/
+			loc_A = loc_B; loc_B = loc_C; loc_C = loc_A;
 		}
 		if(curQuestionIndex == 0)
 			u4_puts(/*D_2F4E*/STR(0x35));
@@ -737,9 +736,8 @@ C_2C12()
 				loc_A += 'a' - 'A';
 		} while(loc_A != KBD_A && loc_A != KBD_B);
 		if(loc_A == KBD_B) {
-			loc_A = loc_B;
-			loc_B = loc_C;
-			loc_C = loc_A;
+			/*swap(loc_B,loc_C);*/
+			loc_A = loc_B; loc_B = loc_C; loc_C = loc_A;
 		}
 		/*chosen virtue*/
 		lastVirtue = loc_B;
@@ -783,9 +781,11 @@ C_2E04()
 	Party.f_1d8 = 1;
 	for(loc_A = 7; loc_A >= 0; loc_A --)
 		*(pKarmas[loc_A]) = tmp_karma[loc_A];
+	/*-- swap(&(Party.chara[lastVirtue]), &(Party.chara[0])) --*/
 	memcpy(&loc_B, &(Party.chara[lastVirtue]), sizeof(struct tChara));
 	memcpy(&(Party.chara[lastVirtue]), &(Party.chara[0]), sizeof(struct tChara));
 	memcpy(&(Party.chara[0]), &loc_B, sizeof(struct tChara));
+	/*-- --*/
 	strcpy(Party.chara[0]._name, player_name);
 	Party.chara[0]._str = tmp_str;
 	Party.chara[0]._int = tmp_int;

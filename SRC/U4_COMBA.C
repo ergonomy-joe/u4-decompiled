@@ -336,6 +336,12 @@ int _dir_y;
 	/*-- --*/
 	hit_tile = (loc_A->_weapon != 14)?TIL_4D:TIL_4E;
 	sound(4);
+	/*note:when using flaming oil with range '0'
+	 this loop is never entered, and so loc_B stays
+	 uninitialized. This may lead to unexpected behavior
+	 on the original version, or exception on modern
+	 systems.
+	*/
 	for(; loc_D; loc_D--) {
 		if(!COM_CheckHitable(_dir_x, _dir_y)) {
 			w_missed(loc_C);

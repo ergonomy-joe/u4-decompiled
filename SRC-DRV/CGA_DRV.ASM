@@ -739,7 +739,7 @@ C_0626:	;--
 	PUSH	AX
 	CALL	_dread
 	ADD	SP,8
-	;--
+	;-- inflate to memory or vram
 	MOV	ES,[BP+X_FAR+6]
 	TEST	WORD PTR [BP+X_FAR+6],0FFFFh
 	JNZ	C_0647
@@ -896,29 +896,30 @@ C_074D	PROC FAR
 	ADD	SP,2
 	;--
 	PUSH	DX
-	;-- clear vram?
 	PUSH	AX
+	;-- clear buffer
 	MOV	ES,DX
 	MOV	DI,AX
 	MOV	CX,2000h
 	MOV	AX,0
 	REPZ	STOSW
+	;-- --
 	POP	AX
-	;--
 	PUSH	AX
+	;-- inflate file to memory
 	PUSH	DX
-
 	PUSH	AX
 	PUSH	[BP+X_FAR+2]
 	PUSH	CS
 	CALL	NEAR PTR _pic_inflate
 	ADD	SP,6
-
+	;--
 	POP	AX
 	POP	DS
-	;--
+	;-- push far ptr for _dfree
 	PUSH	DS
 	PUSH	AX
+	;--
 	MOV	ES,CS:GR_SEGMENT
 	MOV	AH,15h
 C_0789:
@@ -1298,6 +1299,7 @@ random	PROC NEAR
 	ROR	AL,1
 	MOV	CS:C_0036[0],AL
 	MOV	CS:C_0036[3],AL
+	;
 	TEST	AL,0FFh
 	RET
 random	ENDP

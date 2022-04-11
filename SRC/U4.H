@@ -422,10 +422,10 @@ extern int D_95C8;
 extern unsigned char /*D_95CA*/tile_back;
 extern int D_95CC;
 extern unsigned char D_95CE[];/*current .tlk data*/
-extern char D_96EE;
+extern char D_96EE;/*room exit x[dungeon]*/
 extern int /*D_96F0*/File_MAP;
 extern unsigned /*D_96F2*/WindDir;
-extern char D_96F4;
+extern char D_96F4;/*room exit y[dungeon]*/
 extern int /*D_96F6*/File_TLK;
 extern unsigned char D_96F8;
 extern unsigned char D_96F9[11*11];

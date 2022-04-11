@@ -74,7 +74,7 @@ C_3025()
 	shakefx();
 	u_delay(3, 0);
 	dfree(pShapes);
-	Gra_17();
+	Gra_17();/*infinity symbol*/
 	u_delay(3, 0);
 	u4_puts(/*D_0C25*/"\n\nThe boundless knowledge of the Codex of Ultimate Wisdom is revealed unto thee.");
 	C_2F7E();

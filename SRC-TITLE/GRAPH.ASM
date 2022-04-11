@@ -103,10 +103,7 @@ CONST	ENDS
 ;########################################
 _BSS	SEGMENT PUBLIC WORD 'BSS'
 ;----------------------------------------
-D_3A86	dd ?	;random seed
-__3A8A	dd ?	;random seed too?(unused?)
-__3A8E	dd ?	;random seed too?(unused?)
-__3A92	dd ?	;random seed too?(unused?)
+D_3A86	db 10h dup(?)	;random seed[only 4 bytes used]
 ;-- sizzle --
 sizzleBuff	db 80h dup(?)	;D_3A96
 ;-- --
@@ -1985,15 +1982,15 @@ C_2078:
 ;----------------------------------------
 ;random?
 C_208A	PROC NEAR
-	MOV	AL,BYTE PTR D_3A86[3]
-	ADC	AL,BYTE PTR D_3A86[2]
-	MOV	BYTE PTR D_3A86[2],AL
-	XOR	BYTE PTR D_3A86[1],AL
-	MOV	AL,BYTE PTR D_3A86[1]
-	ADC	AL,BYTE PTR D_3A86[0]
+	MOV	AL,D_3A86[3]
+	ADC	AL,D_3A86[2]
+	MOV	D_3A86[2],AL
+	XOR	D_3A86[1],AL
+	MOV	AL,D_3A86[1]
+	ADC	AL,D_3A86[0]
 	ROR	AL,1
-	MOV	BYTE PTR D_3A86[0],AL
-	MOV	BYTE PTR D_3A86[3],AL
+	MOV	D_3A86[0],AL
+	MOV	D_3A86[3],AL
 	MOV	AH,0
 	TEST	AL,0FFh
 	RET	
