@@ -139,9 +139,11 @@ int bp04;/*# of tries*/
 	/*D_8742._map.x32x32 is accessed without any out-of-bounds control.
 Fortunately, there is some control in C_4E94 so any faultly-accessed
 value will be discarded anyway.
-It doesn't seem to cause any problem on the original environment, but
-programmers attempting to build the code for a more recent environment
-might experience an exception here
+Though, there seem to be a problem with 64-bit builds.
+An exception is raised when (bp08+bp_02) or (bp06+bp_04) are negative.
+Masking the sums should fix the problem:
+	D_8742._map.x32x32[bp_04][(bp08+bp_02)&0x1f]
+	D_8742._map.x32x32[(bp06+bp_04)&0x1f][bp_02]
 (issue raised by @plaidpants)*/
 	if(U4_RND1(1) && bp08) {
 		if(C_4E94(bp0a, bp08+bp_02, bp_04, D_8742._map.x32x32[bp_04][bp08+bp_02]))
