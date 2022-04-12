@@ -111,23 +111,30 @@ unsigned char bp04;
 {
 	if(CurMode == MOD_COM_ROOM) {
 		/*-- dungeon room --*/
+		/*someone already exited W/E*/
 		if(D_96EE != 0) {
-			if(bp06 == D_96EE)
-				goto C_7A0C;
-			w_SameExit();
+			if(bp06 != (unsigned char)D_96EE) {
+				w_SameExit();
+				return;
+			}
+			C_7962();
 			return;
-		} else if(D_96F4 != 0) {
-			if(bp04 == D_96F4)
-				goto C_7A0C;
-			w_SameExit();
-			return;
-		} else if(bp06 > 10) {
-			D_96EE = bp06;
-		} else {
-			D_96F4 = bp04;
 		}
+		/*someone already exited N/S*/
+		if(D_96F4 != 0) {
+			if(bp04 != (unsigned char)D_96F4) {
+				w_SameExit();
+				return;
+			}
+			C_7962();
+			return;
+		}
+		/*-- --*/
+		if(bp06 > 10)
+			D_96EE = bp06;
+		else
+			D_96F4 = bp04;
 	}
-C_7A0C:
 	C_7962();
 }
 
