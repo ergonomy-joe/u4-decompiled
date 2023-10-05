@@ -194,41 +194,41 @@ C_4A3D()
 		} while(++si < 8);
 		txt_Y ++;
 	}
-	if(TST_MSK(Party.mItems, 4) || TST_MSK(Party.mItems, 3) || TST_MSK(Party.mItems, 2)) {
+	if(TST_MSK(Party.mItems, ST_BELL) || TST_MSK(Party.mItems, ST_BOOK) || TST_MSK(Party.mItems, ST_CANDLE)) {
 		txt_X = 24;
-		if(TST_MSK(Party.mItems, 4))
+		if(TST_MSK(Party.mItems, ST_BELL))
 			u4_puts(/*D_196A*/"Bell ");
-		if(TST_MSK(Party.mItems, 3))
+		if(TST_MSK(Party.mItems, ST_BOOK))
 			u4_puts(/*D_1970*/"Book ");
-		if(TST_MSK(Party.mItems, 2)) {
+		if(TST_MSK(Party.mItems, ST_CANDLE)) {
 			u4_puts(/*D_1976*/"Candl");
-			if(!TST_MSK(Party.mItems, 3) || !TST_MSK(Party.mItems, 4))
+			if(!TST_MSK(Party.mItems, ST_BOOK) || !TST_MSK(Party.mItems, ST_BELL))
 				u4_putc('e');
 		}
 		txt_Y ++;
 	}
-	if(TST_MSK(Party.mItems, 5) || TST_MSK(Party.mItems, 6) || TST_MSK(Party.mItems, 7)) {
+	if(TST_MSK(Party.mItems, ST_KEY_C) || TST_MSK(Party.mItems, ST_KEY_L) || TST_MSK(Party.mItems, ST_KEY_T)) {
 		txt_X = 24;
 		u4_puts(/*D_197C*/"3 Part Key:");
-		if(TST_MSK(Party.mItems, 7))
+		if(TST_MSK(Party.mItems, ST_KEY_T))
 			u4_putc('T');
-		if(TST_MSK(Party.mItems, 6))
+		if(TST_MSK(Party.mItems, ST_KEY_L))
 			u4_putc('L');
-		if(TST_MSK(Party.mItems, 5))
+		if(TST_MSK(Party.mItems, ST_KEY_C))
 			u4_putc('C');
 		txt_Y ++;
 	}
-	if(TST_MSK(Party.mItems, 8)) {
+	if(TST_MSK(Party.mItems, ST_HORN)) {
 		txt_X = 24;
 		u4_puts(/*D_1988*/"Horn");
 		txt_Y ++;
 	}
-	if(TST_MSK(Party.mItems, 9)) {
+	if(TST_MSK(Party.mItems, ST_WHEEL)) {
 		txt_X = 24;
 		u4_puts(/*D_198D*/"Wheel");
 		txt_Y ++;
 	}
-	if(TST_MSK(Party.mItems, 0)) {
+	if(TST_MSK(Party.mItems, ST_SKULL)) {
 		txt_X = 24;
 		u4_puts(/*D_1993*/"Skull");
 	}

@@ -175,9 +175,9 @@ C_31F4()
 	u_delay(4, 0);
 	Gra_16((D_943A == 1)?/*D_11BC*/"key7.pic":/*D_11C5*/"key7.ega", 0, 0);
 	if(
-		!TST_MSK(Party.mItems, 5) |
-		!TST_MSK(Party.mItems, 7) |
-		!TST_MSK(Party.mItems, 6)
+		!TST_MSK(Party.mItems, ST_KEY_C) |
+		!TST_MSK(Party.mItems, ST_KEY_T) |
+		!TST_MSK(Party.mItems, ST_KEY_L)
 	) {
 		u4_puts(/*D_11CE*/"\nThou dost not have the Key of Three Parts.\n");
 		C_2F9D(12);

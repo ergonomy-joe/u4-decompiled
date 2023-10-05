@@ -27,6 +27,21 @@
 #define DIR_E 2
 #define DIR_S 3
 
+/*constants for "struct tParty.mItems" masking*/
+#define ST_USE_BELL   12
+#define ST_USE_BOOK   11
+#define ST_USE_CANDLE 10
+#define ST_WHEEL       9
+#define ST_HORN        8
+#define ST_KEY_T       7
+#define ST_KEY_L       6
+#define ST_KEY_C       5
+#define ST_BELL        4
+#define ST_BOOK        3
+#define ST_CANDLE      2
+#define ST_CAST_SKULL  1
+#define ST_SKULL       0
+
 #define DNG_X_p(x, dir) (((x) + D_080C[(dir)]) & 7)
 #define DNG_X_m(x, dir) (((x) - D_080C[(dir)]) & 7)
 #define DNG_Y_p(y, dir) (((y) + D_0810[(dir)]) & 7)

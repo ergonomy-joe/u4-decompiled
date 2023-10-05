@@ -104,12 +104,12 @@ C_3F4A()
 C_3FB9()
 {
 	if((
-		(Party.mItems >> 3) &
-		(Party.mItems >> 4) &
-		(Party.mItems >> 2) &
-		(Party.mItems >> 11) &
-		(Party.mItems >> 12) &
-		(Party.mItems >> 10)
+		(Party.mItems >> ST_BOOK) &
+		(Party.mItems >> ST_BELL) &
+		(Party.mItems >> ST_CANDLE) &
+		(Party.mItems >> ST_USE_BOOK) &
+		(Party.mItems >> ST_USE_BELL) &
+		(Party.mItems >> ST_USE_CANDLE)
 	) & 1) {
 		u4_puts(D_1E98[127 + Party._loc - 1]);
 		C_3F03();

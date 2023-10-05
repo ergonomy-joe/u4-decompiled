@@ -53,25 +53,25 @@ void C_01E1()
 	}
 	switch(D_943E) {
 		case 0:
-			if(TST_MSK(Party.mItems, 7)) {
+			if(TST_MSK(Party.mItems, ST_KEY_T)) {
 				u4_puts(D_00EE);
 				return;
 			}
-			SET_MSK(Party.mItems, 7);
+			SET_MSK(Party.mItems, ST_KEY_T);
 		break;
 		case 1:
-			if(TST_MSK(Party.mItems, 6)) {
+			if(TST_MSK(Party.mItems, ST_KEY_L)) {
 				u4_puts(D_00EE);
 				return;
 			}
-			SET_MSK(Party.mItems, 6);
+			SET_MSK(Party.mItems, ST_KEY_L);
 		break;
 		case 2:
-			if(TST_MSK(Party.mItems, 5)) {
+			if(TST_MSK(Party.mItems, ST_KEY_C)) {
 				u4_puts(D_00EE);
 				return;
 			}
-			SET_MSK(Party.mItems, 5);
+			SET_MSK(Party.mItems, ST_KEY_C);
 		break;
 	}
 	u4_puts(/*D_00BC*/"Thou doth find one third of the Three Part Key!\n");
@@ -148,9 +148,9 @@ C_03A1:
 /*use key(s)*/
 C_044C() {
 	if(
-		((Party.mItems >> 7) & 1) |
-		((Party.mItems >> 6) & 1) |
-		((Party.mItems >> 5) & 1)
+		((Party.mItems >> ST_KEY_T) & 1) |
+		((Party.mItems >> ST_KEY_L) & 1) |
+		((Party.mItems >> ST_KEY_C) & 1)
 	)
 		u4_puts("No place to Use them!\n");
 	else
@@ -159,7 +159,7 @@ C_044C() {
 
 /*use bell*/
 C_0487() {
-	if(!TST_MSK(Party.mItems, 4)) {
+	if(!TST_MSK(Party.mItems, ST_BELL)) {
 		u4_puts(D_0100);
 		return;
 	}
@@ -167,39 +167,39 @@ C_0487() {
 		u4_puts(D_00EE);
 		return;
 	}
-	SET_MSK(Party.mItems, 12);
+	SET_MSK(Party.mItems, ST_USE_BELL);
 	u4_puts("The Bell rings on and on!\n");
 }
 
 /*use book*/
 C_04C0() {
-	if(!TST_MSK(Party.mItems, 3)) {
+	if(!TST_MSK(Party.mItems, ST_BOOK)) {
 		u4_puts(D_0100);
 		return;
 	}
 	if(Party._loc != 0 || Party._x != 0xe9 || Party._y != 0xe9 ||
-		!TST_MSK(Party.mItems, 12)
+		!TST_MSK(Party.mItems, ST_USE_BELL)
 	) {
 		u4_puts(D_00EE);
 		return;
 	}
-	SET_MSK(Party.mItems, 11);
+	SET_MSK(Party.mItems, ST_USE_BOOK);
 	u4_puts("The words resonate with the ringing!\n");
 }
 
 /*use candle*/
 C_0501() {
-	if(!TST_MSK(Party.mItems, 2)) {
+	if(!TST_MSK(Party.mItems, ST_CANDLE)) {
 		u4_puts(D_0100);
 		return;
 	}
 	if(Party._loc != 0 || Party._x != 0xe9 || Party._y != 0xe9 ||
-		!TST_MSK(Party.mItems, 11)
+		!TST_MSK(Party.mItems, ST_USE_BOOK)
 	) {
 		u4_puts(D_00EE);
 		return;
 	}
-	SET_MSK(Party.mItems, 10);
+	SET_MSK(Party.mItems, ST_USE_CANDLE);
 	u4_puts("As you light the Candle the Earth Trembles!\n");
 	sound(6);
 	shakefx();
@@ -207,7 +207,7 @@ C_0501() {
 
 /*use horn*/
 C_0553() {
-	if(!TST_MSK(Party.mItems, 8)) {
+	if(!TST_MSK(Party.mItems, ST_HORN)) {
 		u4_puts(D_0100);
 		return;
 	}
@@ -223,7 +223,7 @@ C_0553() {
 
 /*use wheel*/
 C_058C() {
-	if(!TST_MSK(Party.mItems, 9)) {
+	if(!TST_MSK(Party.mItems, ST_WHEEL)) {
 		u4_puts(D_0100);
 		return;
 	}
@@ -240,7 +240,7 @@ C_058C() {
 C_05CE() {
 	int bp_02;
 
-	if(!TST_MSK(Party.mItems, 0)) {
+	if(!TST_MSK(Party.mItems, ST_SKULL)) {
 		u4_puts(D_0100);
 		return;
 	}
@@ -279,7 +279,7 @@ C_05CE() {
 		dspl_Stats();
 	} else {
 		u4_puts("\nYou cast the Skull of Mondain into the Abyss!\n");
-		SET_MSK(Party.mItems, 1);
+		SET_MSK(Party.mItems, ST_CAST_SKULL);
 		karma_inc((char *)&(Party._hones), 10);
 		karma_inc((char *)&(Party._compa), 10);
 		karma_inc((char *)&(Party._valor), 10);
@@ -294,7 +294,7 @@ C_05CE() {
 		Gra_09();
 		sound(6); shakefx();
 	}
-	RST_MSK(Party.mItems, 0);
+	RST_MSK(Party.mItems, ST_SKULL);
 }
 
 struct {

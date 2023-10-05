@@ -114,10 +114,10 @@ C_E21E() {
 	) {
 		u4_puts(/*D_75B7*/"Thou art doing very well indeed on the path to Avatarhood! Strive ye to achieve the Elevation in all eight virtues!\n");
 	} else
-	if(!((Party.mItems >> 4) & (Party.mItems >> 3) & (Party.mItems >> 2) & 1)) {
+	if(!((Party.mItems >> ST_BELL) & (Party.mItems >> ST_BOOK) & (Party.mItems >> ST_CANDLE) & 1)) {
 		u4_puts(/*D_762C*/"Find ye the Bell, Book and Candle!  With these three things, one may enter the Great Stygian Abyss!\n");
 	} else
-	if(!((Party.mItems >> 5) & (Party.mItems >> 6) & (Party.mItems >> 7) & 1)) {
+	if(!((Party.mItems >> ST_KEY_C) & (Party.mItems >> ST_KEY_L) & (Party.mItems >> ST_KEY_T) & 1)) {
 		u4_puts(/*D_7691*/"Before thou dost enter the Abyss thou shalt need the Key of Three Parts, and the Word of Passage.\n"); C_E1FC();
 		u4_puts(/*D_76F4*/"\nThen might thou enter the Chamber of the Codex of Ultimate Wisdom!\n");
 	} else {
